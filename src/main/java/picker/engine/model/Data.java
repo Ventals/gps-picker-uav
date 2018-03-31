@@ -8,7 +8,7 @@ import lombok.Value;
 public class Data {
     long lat;
     long lon;
-    int h;
+    int height;
 
     int roll;
     int pich;
