@@ -6,13 +6,12 @@ import static java.lang.Math.*;
 import static picker.engine.model.Constant.*;
 
 public class MathUtils {
-
     public static final double MATRIX_SQRT = sqrt(MATRIX_FOCUS * MATRIX_FOCUS + (MATRIX_WIDTH * MATRIX_WIDTH / 4));
     public static final double MATRIX_ATAN = atan(MATRIX_HEIGHT / (2 * MATRIX_FOCUS));
 
     public static double[][] getPitchCorrections(Data data) {
         double[][] corrections = getPitchUpCorrections(data);
-        boolean needReverse = data.getPich() < 0;
+        boolean needReverse = data.getPitch() < 0;
         if (needReverse) {
             swapCorrections(corrections, 0, 0, 1);
             swapCorrections(corrections, 0, 2, 3);
@@ -30,8 +29,8 @@ public class MathUtils {
 
     private static double[][] getPitchUpCorrections(Data data) {
         double[][] corrections = new double[4][2];
-        double angle = data.getPich();
-        double height = data.getHeight();
+        double angle = data.getPitch();
+        double height = data.getH();
         double Gt = height * MATRIX_SQRT;
         double Bt = MATRIX_ATAN;
 
@@ -50,7 +49,7 @@ public class MathUtils {
 
     public static double[][] getRollCorrections(Data data) {
         double[][] corrections = getRollUpCorrections(data);
-        boolean needReverse = data.getPich() < 0;
+        boolean needReverse = data.getPitch() < 0;
         if (needReverse) {
             swapCorrections(corrections, 0, 0, 1);
             swapCorrections(corrections, 0, 2, 3);
@@ -64,7 +63,7 @@ public class MathUtils {
 
     private static double[][] getRollUpCorrections(Data data) {
         double[][] corrections = new double[4][2];
-        double height = data.getHeight();
+        double height = data.getH();
         double angle = data.getRoll();
         double Gk = height * Math.sqrt(MATRIX_FOCUS * MATRIX_FOCUS + (MATRIX_HEIGHT * MATRIX_HEIGHT / 4));
         double Bk = Math.atan(MATRIX_HEIGHT / 2 * MATRIX_FOCUS);
