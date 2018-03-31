@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="gps-picker-uav" />
+        <module name="Hatakon" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="gps-picker-uav" target="1.8" />
+      <module name="Hatakon" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -6,11 +6,11 @@ import lombok.Value;
 @Value
 @Builder
 public class Data {
-    long lat;
-    long lon;
+    double lat;
+    double lon;
     int h;
 
-    int roll;
-    int pich;
-    int yaw;
+    double roll;
+    double pitch;
+    double yaw;
 }

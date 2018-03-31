@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/gps-picker-uav.iml" filepath="$PROJECT_DIR$/.idea/gps-picker-uav.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Hatakon.iml" filepath="$PROJECT_DIR$/Hatakon.iml" />
     </modules>
   </component>
 </project>
