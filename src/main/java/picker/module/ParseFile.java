@@ -1,6 +1,6 @@
+package picker.module;
+
 import java.io.*;
-import java.text.DecimalFormat;
-import java.util.Locale;
 
 /**
  * Created by Михаил on 23.04.2017.
