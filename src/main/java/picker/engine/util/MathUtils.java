@@ -65,8 +65,8 @@ public class MathUtils {
         double[][] corrections = new double[4][2];
         double height = data.getH();
         double angle = data.getRoll();
-        double Gk = height * Math.sqrt(MATRIX_FOCUS * MATRIX_FOCUS + (MATRIX_HEIGHT * MATRIX_HEIGHT / 4));
-        double Bk = Math.atan(MATRIX_HEIGHT / 2 * MATRIX_FOCUS);
+        double Gk = height * sqrt(MATRIX_FOCUS * MATRIX_FOCUS + (MATRIX_HEIGHT * MATRIX_HEIGHT / 4));
+        double Bk = atan(MATRIX_HEIGHT / 2 * MATRIX_FOCUS);
 
         corrections[0][0] = height * (sin(Bk) / cos(angle) * cos(angle));
         corrections[1][0] = corrections[0][0];
@@ -84,8 +84,8 @@ public class MathUtils {
         double[] corrections = new double[2];
         double y = ((Double) null);
         double x = ((Double) null);
-        corrections[0] = y * Math.sin(data.getYaw());
-        corrections[1] = x * Math.cos(data.getYaw());
+        corrections[0] = y * sin(data.getYaw());
+        corrections[1] = x * cos(data.getYaw());
         return corrections;
     }
 }

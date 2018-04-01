@@ -14,21 +14,21 @@ public class Controller {
         for (double item : centralCoords) {
             System.out.print(item + " ");
         }
-//        System.out.println("\n ^ central ------");
+        System.out.println("\n ^ central ------");
         double[][] pitchCorrection = MathUtils.getPitchCorrections(data);
-//        for (double[] pair : pitchCorrection){
-//            for (double item : pair){
-//                System.out.print(item + " ");
-//            }
-//            System.out.println("\n^ pitch ------");
-//        }
+        for (double[] pair : pitchCorrection){
+            for (double item : pair){
+                System.out.print(item + " ");
+            }
+            System.out.println("\n^ pitch ------");
+        }
         double[][] rollCorrection = MathUtils.getRollCorrections(data);
-//        for (double[] pair : pitchCorrection){
-//            for (double item : pair){
-//                System.out.print(item + " ");
-//            }
-//            System.out.println("\n^ roll ------");
-//        }
+        for (double[] pair : pitchCorrection){
+            for (double item : pair){
+                System.out.print(item + " ");
+            }
+            System.out.println("\n^ roll ------");
+        }
         double[][] result = new double[4][2];
         for (int i = 0; i < rollCorrection.length; i++){
             double x = ( centralCoords[0] + pitchCorrection[i][0] + rollCorrection[i][0] ) * Math.cos(data.getYaw());
