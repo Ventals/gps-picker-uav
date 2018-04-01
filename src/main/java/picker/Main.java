@@ -10,7 +10,7 @@ public class Main {
         double[][] result = new Controller().getPhotoCoords();
         for (double[] pair : result){
             for (double item : pair){
-                System.out.print((int)item + " ");
+                System.out.print(item + ",");
             }
             System.out.println();
         }
