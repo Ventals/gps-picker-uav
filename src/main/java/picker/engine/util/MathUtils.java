@@ -49,7 +49,7 @@ public class MathUtils {
 
     public static double[][] getRollCorrections(Data data) {
         double[][] corrections = getRollUpCorrections(data);
-        boolean needReverse = data.getPitch() < 0;
+        boolean needReverse = data.getRoll() < 0;
         if (needReverse) {
             swapCorrections(corrections, 0, 0, 1);
             swapCorrections(corrections, 0, 2, 3);
