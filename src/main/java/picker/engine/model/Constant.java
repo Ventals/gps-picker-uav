@@ -1,10 +1,8 @@
 package picker.engine.model;
 
 public class Constant {
-    public static final double MATRIX_HEIGHT = 4.605263158;
-    public static final double MATRIX_WIDTH = 6.140350877;
-    public static final double MATRIX_FOCUS = 16;
+    public static final double FRAME_HEIGHT = 0.36 / 5.7;
+    public static final double FRAME_WIDTH = 0.24 / 5.7;
+    public static final double LENS_FOCUS = 0.16;
 
-    public static final double ONE_LATITUDE = 111111000e2;
-    public static final double ONE_LONGITUDE = 89000000e2;
 }

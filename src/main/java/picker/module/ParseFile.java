@@ -30,12 +30,12 @@ public class ParseFile {
         String raw = getRaw(id);
         String[] data = splitRaw(raw);
         return Data.builder()
-                .lat(Double.parseDouble(data[12]) / 10000000)
-                .lon(Double.parseDouble(data[14]) / 10000000)
-                .h((int) (Double.parseDouble(data[18]) * 1000))
-                .roll(Double.parseDouble(data[20]) / 180)
-                .pitch(Double.parseDouble(data[22]) / 180)
-                .yaw(Double.parseDouble(data[24]) / 180)
+                .lat(Double.parseDouble(data[12]))
+                .lon(Double.parseDouble(data[14]))
+                .h((int) (Double.parseDouble(data[18])))
+                .roll(Double.parseDouble(data[20]))
+                .pitch(Double.parseDouble(data[22]))
+                .yaw(Double.parseDouble(data[24]))
                 .build();
     }
 
