@@ -13,4 +13,5 @@ public class Data {
     double roll;
     double pitch;
     double yaw;
+
 }

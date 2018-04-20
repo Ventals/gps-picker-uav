@@ -14,7 +14,7 @@ public class ParseFile {
 
     private String getRaw (int id) throws IOException {
         int line = 0;
-        BufferedReader reader = new BufferedReader(new FileReader(this.inputFile));
+        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
         while (line < id) {
             reader.readLine();
             line++;
@@ -30,8 +30,8 @@ public class ParseFile {
         String raw = getRaw(id);
         String[] data = splitRaw(raw);
         return Data.builder()
-                .lat(Double.parseDouble(data[12]))
-                .lon(Double.parseDouble(data[14]))
+                .lon(Double.parseDouble(data[12])/ 10000000)
+                .lat(Double.parseDouble(data[14])/ 10000000)
                 .h((int) (Double.parseDouble(data[18])))
                 .roll(Double.parseDouble(data[20]))
                 .pitch(Double.parseDouble(data[22]))
@@ -39,4 +39,12 @@ public class ParseFile {
                 .build();
     }
 
+    public int getCount() throws IOException {
+        int count = 0;
+        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+        while (reader.readLine() != null) {
+            count++;
+        }
+        return count;
+    }
 }

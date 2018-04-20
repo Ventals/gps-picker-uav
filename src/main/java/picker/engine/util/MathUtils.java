@@ -1,11 +1,13 @@
 package picker.engine.util;
 
-import java.text.MessageFormat;
+import picker.engine.model.Data;
+import picker.engine.util.ConversionUtils;
 
 import static picker.engine.model.Constant.*;
 import static java.lang.Math.*;
 
 public class MathUtils {
+
     private double get_g_pitch(double height) {
         return height * sqrt(pow(LENS_FOCUS, 2) + pow(FRAME_WIDTH, 2) / 4);
     }
@@ -14,24 +16,14 @@ public class MathUtils {
         return height * sqrt(pow(LENS_FOCUS, 2) + pow(FRAME_HEIGHT, 2) / 4);
     }
 
-
-
-
     private double get_beta_pitch() {
         return atan(FRAME_WIDTH / (2 * LENS_FOCUS));
     }
 
-
-
-
-    private double get_beta_roll() {
-        return atan(FRAME_HEIGHT / (2 * LENS_FOCUS));
-    }
+    private double get_beta_roll() { return atan(FRAME_HEIGHT / (2 * LENS_FOCUS)); }
 
     private double calc_x1(double x_center, double height, double pitch, double roll, double yaw) {
-        // local constants
         double g_pitch = get_g_pitch(height);
-        double g_roll = get_g_roll(height);
         double beta_pitch = get_beta_pitch();
         double beta_roll = get_beta_roll();
 
@@ -47,7 +39,6 @@ public class MathUtils {
     private double calc_x2(double x_center, double height, double pitch, double roll, double yaw) {
         // local constants
         double g_pitch = get_g_pitch(height);
-        double g_roll = get_g_roll(height);
         double beta_pitch = get_beta_pitch();
         double beta_roll = get_beta_roll();
 
@@ -63,7 +54,6 @@ public class MathUtils {
     private double calc_x3(double x_center, double  height, double pitch, double roll, double yaw) {
         // local constants
         double g_pitch = get_g_pitch(height);
-        double g_roll = get_g_roll(height);
         double beta_pitch = get_beta_pitch();
         double beta_roll = get_beta_roll();
 
@@ -79,7 +69,6 @@ public class MathUtils {
     private double calc_x4(double x_center, double height, double pitch, double roll, double yaw) {
         // local constants
         double g_pitch = get_g_pitch(height);
-        double g_roll = get_g_roll(height);
         double beta_pitch = get_beta_pitch();
         double beta_roll = get_beta_roll();
 
@@ -93,7 +82,6 @@ public class MathUtils {
 
     private double calc_y1(double y_center, double height, double pitch, double roll, double yaw) {
         // local constants
-        double g_pitch = get_g_pitch(height);
         double g_roll = get_g_roll(height);
         double beta_pitch = get_beta_pitch();
         double beta_roll = get_beta_roll();
@@ -109,7 +97,6 @@ public class MathUtils {
 
     private double calc_y2(double y_center, double height, double pitch, double roll, double yaw) {
         // local constants
-        double g_pitch = get_g_pitch(height);
         double g_roll = get_g_roll(height);
         double beta_pitch = get_beta_pitch();
         double beta_roll = get_beta_roll();
@@ -125,7 +112,6 @@ public class MathUtils {
 
     private double calc_y3(double y_center, double height, double pitch, double roll, double yaw) {
         // local constants
-        double g_pitch = get_g_pitch(height);
         double g_roll = get_g_roll(height);
         double beta_pitch = get_beta_pitch();
         double beta_roll = get_beta_roll();
@@ -141,7 +127,6 @@ public class MathUtils {
 
     private double calc_y4(double y_center, double height, double pitch, double roll, double yaw) {
         // local constants
-        double g_pitch = get_g_pitch(height);
         double g_roll = get_g_roll(height);
         double beta_pitch = get_beta_pitch();
         double beta_roll = get_beta_roll();
@@ -152,48 +137,14 @@ public class MathUtils {
         return (y_center + y_pitch + y_roll);
     }
 
+    public MathUtils(Data data) {
+        double pitch_ = data.getPitch();
+        double roll_ = data.getRoll();
+        double yaw_ = data.getYaw();
+        double height = data.getH();
+        double x_0 = data.getLat();
+        double y_0 = data.getLon();
 
-
-
-    private double delta_lat_2_meter(double lat_1,double  lat_2) {
-        double mid = 111134.861111; // meters in degree
-        return (lat_2 - lat_1) * mid;
-    }
-
-
-
-
-    private double delta_long_2_meter(double long_1, double long_2) {
-        double mid = 111321.377778 * cos(long_1);
-        return (long_2 - long_1) * mid;
-    }
-
-
-
-
-
-    private double delta_meter_2_lat(double m_1, double m_2) {
-        double dim = 1 / 111134.861111; // meters in degree
-        return (m_2 - m_1) *dim;
-    }
-
-
-
-
-    private double delta_meter_2_long(double m_1, double m_2, double longe) {
-        double dim = 1 / (111321.377778 * cos(longe));
-        return (m_2 - m_1) * dim;
-    }
-
-
-
-
-
-    public MathUtils(double x_0, double y_0, double height, double pitch_, double roll_, double yaw_) {
-
-        // pitch = pitch_
-        // roll = roll_
-        // yaw = yaw_
         double pitch = pitch_/180 * PI;
         double roll = roll_/180 * PI;
         double yaw = yaw_/180 * PI;
@@ -226,18 +177,18 @@ public class MathUtils {
         double y4_yaw = -x_4 * sin(yaw) + y_4 * cos(yaw);
 
         //// to geolocation
-        double x_center_geo = delta_meter_2_long(0, x_center_yaw, x_0) + x_0;
-        double y_center_geo = delta_meter_2_long(0, y_center_yaw, y_0) + y_0;
+        double x_center_geo = ConversionUtils.deltaMeterToLon(0, x_center_yaw, x_0) + x_0;
+        double y_center_geo = ConversionUtils.deltaMeterToLon(0, y_center_yaw, y_0) + y_0;
 
-        double x1_geo = delta_meter_2_long(0, x1_yaw, x_0) + x_0;
-        double x2_geo = delta_meter_2_long(0, x2_yaw, x_0) + x_0;
-        double x3_geo = delta_meter_2_long(0, x3_yaw, x_0) + x_0;
-        double x4_geo = delta_meter_2_long(0, x4_yaw, x_0) + x_0;
+        double x1_geo = ConversionUtils.deltaMeterToLon(0, x1_yaw, x_0) + x_0;
+        double x2_geo = ConversionUtils.deltaMeterToLon(0, x2_yaw, x_0) + x_0;
+        double x3_geo = ConversionUtils.deltaMeterToLon(0, x3_yaw, x_0) + x_0;
+        double x4_geo = ConversionUtils.deltaMeterToLon(0, x4_yaw, x_0) + x_0;
 
-        double y1_geo = delta_meter_2_lat(0, y1_yaw) + y_0;
-        double y2_geo = delta_meter_2_lat(0, y2_yaw) + y_0;
-        double y3_geo = delta_meter_2_lat(0, y3_yaw) + y_0;
-        double y4_geo = delta_meter_2_lat(0, y4_yaw) + y_0;
+        double y1_geo = ConversionUtils.deltaMeterToLat(0, y1_yaw) + y_0;
+        double y2_geo = ConversionUtils.deltaMeterToLat(0, y2_yaw) + y_0;
+        double y3_geo = ConversionUtils.deltaMeterToLat(0, y3_yaw) + y_0;
+        double y4_geo = ConversionUtils.deltaMeterToLat(0, y4_yaw) + y_0;
 
         // return y_center_geo, x_center_geo, y1_geo, x1_geo, y2_geo, x2_geo, y3_geo, x3_geo, y4_geo, x4_geo
 
