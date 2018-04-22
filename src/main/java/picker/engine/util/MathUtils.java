@@ -1,7 +1,6 @@
 package picker.engine.util;
 
 import picker.engine.model.Data;
-import picker.engine.util.ConversionUtils;
 
 import static picker.engine.model.Constant.*;
 import static java.lang.Math.*;
@@ -137,7 +136,7 @@ public class MathUtils {
         return (y_center + y_pitch + y_roll);
     }
 
-    public MathUtils(Data data) {
+    public String getResult(Data data){
         double pitch_ = data.getPitch();
         double roll_ = data.getRoll();
         double yaw_ = data.getYaw();
@@ -191,10 +190,8 @@ public class MathUtils {
         double y4_geo = ConversionUtils.deltaMeterToLat(0, y4_yaw) + y_0;
 
         // return y_center_geo, x_center_geo, y1_geo, x1_geo, y2_geo, x2_geo, y3_geo, x3_geo, y4_geo, x4_geo
-
-        System.out.println(String.format("%s,%s\n%s,%s\n%s,%s\n%s,%s\n%s,%s\n", y_center_geo, x_center_geo, y1_geo, x1_geo, y2_geo, x2_geo, y3_geo, x3_geo, y4_geo, x4_geo));
-
+        String result = String.format("%s,%s\n%s,%s\n%s,%s\n%s,%s\n%s,%s\n", y_center_geo, x_center_geo, y1_geo, x1_geo, y2_geo, x2_geo, y3_geo, x3_geo, y4_geo, x4_geo);
+        System.out.println(result);
+        return result;
     }
-
-
 }
