@@ -8,11 +8,9 @@ public class ConversionUtils {
         return (m_2 - m_1) *dim;
     }
 
-
-
-
     public static double deltaMeterToLon(double m_1, double m_2, double longe) {
         double dim = 1 / (111321.377778 * cos(longe));
         return (m_2 - m_1) * dim;
     }
+    
 }
