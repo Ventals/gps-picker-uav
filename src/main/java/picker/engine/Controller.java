@@ -1,6 +1,5 @@
 package picker.engine;
 
-import picker.engine.model.Constant;
 import picker.engine.model.Data;
 import picker.engine.util.MathUtils;
 import picker.module.ParseFile;
@@ -22,7 +21,7 @@ public class Controller {
         for (int id = 1; id < count; id++){
             data = parseFile.getParsedData(id);
             String res = new MathUtils().getResult(data);
-            writeLog.WriteLogToFile(res);
+            writeLog.writeLogToFile(res);
         }
     }
 }

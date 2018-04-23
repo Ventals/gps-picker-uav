@@ -7,24 +7,26 @@ import static java.lang.Math.*;
 
 public class MathUtils {
 
-    private double get_g_pitch(double height) {
+    private double getGPitch(double height) {
         return height * sqrt(pow(LENS_FOCUS, 2) + pow(FRAME_WIDTH, 2) / 4);
     }
 
-    private double get_g_roll(double height) {
+    private double getGRoll(double height) {
         return height * sqrt(pow(LENS_FOCUS, 2) + pow(FRAME_HEIGHT, 2) / 4);
     }
 
-    private double get_beta_pitch() {
+    private double getBetaPitch() {
         return atan(FRAME_WIDTH / (2 * LENS_FOCUS));
     }
 
-    private double get_beta_roll() { return atan(FRAME_HEIGHT / (2 * LENS_FOCUS)); }
+    private double getBetaRoll() {
+        return atan(FRAME_HEIGHT / (2 * LENS_FOCUS));
+    }
 
-    private double calc_x1(double x_center, double height, double pitch, double roll, double yaw) {
-        double g_pitch = get_g_pitch(height);
-        double beta_pitch = get_beta_pitch();
-        double beta_roll = get_beta_roll();
+    private double calcX1(double x_center, double height, double pitch, double roll, double yaw) {
+        double g_pitch = getGPitch(height);
+        double beta_pitch = getBetaPitch();
+        double beta_roll = getBetaRoll();
 
         double x_pitch =  pitch > 0 ? g_pitch / cos(pitch + beta_pitch) : g_pitch / cos(pitch - beta_pitch);
         double x_roll = roll > 0? height * (sin(beta_roll) / pow(cos(roll), 2)) : height / (cos(roll) * cos(beta_roll) + sin(roll) * sin(beta_roll));
@@ -32,14 +34,11 @@ public class MathUtils {
         return (x_center + x_pitch + x_roll);
     }
 
-
-
-
-    private double calc_x2(double x_center, double height, double pitch, double roll, double yaw) {
+    private double calcX2(double x_center, double height, double pitch, double roll, double yaw) {
         // local constants
-        double g_pitch = get_g_pitch(height);
-        double beta_pitch = get_beta_pitch();
-        double beta_roll = get_beta_roll();
+        double g_pitch = getGPitch(height);
+        double beta_pitch = getBetaPitch();
+        double beta_roll = getBetaRoll();
 
         double x_pitch =  pitch > 0 ? g_pitch / cos(pitch - beta_pitch) : g_pitch / cos(pitch + beta_pitch);
         double x_roll = roll > 0 ? height * (sin(beta_roll) / pow(cos(roll), 2)) : height / (cos(roll) * cos(beta_roll) + sin(roll) * sin(beta_roll));
@@ -47,14 +46,11 @@ public class MathUtils {
         return (x_center + x_pitch + x_roll);
     }
 
-
-
-
-    private double calc_x3(double x_center, double  height, double pitch, double roll, double yaw) {
+    private double calcX3(double x_center, double  height, double pitch, double roll, double yaw) {
         // local constants
-        double g_pitch = get_g_pitch(height);
-        double beta_pitch = get_beta_pitch();
-        double beta_roll = get_beta_roll();
+        double g_pitch = getGPitch(height);
+        double beta_pitch = getBetaPitch();
+        double beta_roll = getBetaRoll();
 
         double x_pitch = pitch > 0 ? -g_pitch / cos(pitch - beta_pitch) : -g_pitch / cos(pitch + beta_pitch);
         double x_roll = roll > 0 ? -height / (cos(roll) * cos(beta_roll) + sin(roll) * sin(beta_roll)) : -height * (sin(beta_roll) / pow(cos(roll), 2));
@@ -62,14 +58,11 @@ public class MathUtils {
         return (x_center + x_pitch + x_roll);
     }
 
-
-
-
-    private double calc_x4(double x_center, double height, double pitch, double roll, double yaw) {
+    private double calcX4(double x_center, double height, double pitch, double roll, double yaw) {
         // local constants
-        double g_pitch = get_g_pitch(height);
-        double beta_pitch = get_beta_pitch();
-        double beta_roll = get_beta_roll();
+        double g_pitch = getGPitch(height);
+        double beta_pitch = getBetaPitch();
+        double beta_roll = getBetaRoll();
 
         double x_pitch = pitch > 0 ? -g_pitch / cos(pitch + beta_pitch) : -g_pitch / cos(pitch - beta_pitch);
         double x_roll = roll > 0 ? -height / (cos(roll) * cos(beta_roll) + sin(roll) * sin(beta_roll)) : -height * (sin(beta_roll) / pow(cos(roll), 2));
@@ -77,13 +70,11 @@ public class MathUtils {
         return (x_center + x_pitch + x_roll);
     }
 
-
-
-    private double calc_y1(double y_center, double height, double pitch, double roll, double yaw) {
+    private double calcY1(double y_center, double height, double pitch, double roll, double yaw) {
         // local constants
-        double g_roll = get_g_roll(height);
-        double beta_pitch = get_beta_pitch();
-        double beta_roll = get_beta_roll();
+        double g_roll = getGRoll(height);
+        double beta_pitch = getBetaPitch();
+        double beta_roll = getBetaRoll();
 
         double y_pitch = pitch > 0 ? height * (sin(beta_pitch) / pow(cos(pitch), 2)) : height / (cos(pitch) * cos(beta_pitch) + sin(pitch) * sin(beta_pitch));
         double y_roll = roll > 0 ? g_roll / cos(roll + beta_roll) : g_roll / cos(roll - beta_roll);
@@ -91,14 +82,11 @@ public class MathUtils {
         return (y_center + y_pitch + y_roll);
     }
 
-
-
-
-    private double calc_y2(double y_center, double height, double pitch, double roll, double yaw) {
+    private double calcY2(double y_center, double height, double pitch, double roll, double yaw) {
         // local constants
-        double g_roll = get_g_roll(height);
-        double beta_pitch = get_beta_pitch();
-        double beta_roll = get_beta_roll();
+        double g_roll = getGRoll(height);
+        double beta_pitch = getBetaPitch();
+        double beta_roll = getBetaRoll();
 
         double y_pitch = -height / (cos(pitch) * cos(beta_pitch) + sin(pitch) * sin(beta_pitch));
         double y_roll = roll > 0 ? -g_roll / cos(roll + beta_roll) : -g_roll / cos(roll - beta_roll);
@@ -106,14 +94,11 @@ public class MathUtils {
         return (y_center + y_pitch + y_roll);
     }
 
-
-
-
-    private double calc_y3(double y_center, double height, double pitch, double roll, double yaw) {
+    private double calcY3(double y_center, double height, double pitch, double roll, double yaw) {
         // local constants
-        double g_roll = get_g_roll(height);
-        double beta_pitch = get_beta_pitch();
-        double beta_roll = get_beta_roll();
+        double g_roll = getGRoll(height);
+        double beta_pitch = getBetaPitch();
+        double beta_roll = getBetaRoll();
 
         double y_pitch = -height / (cos(pitch) * cos(beta_pitch) + sin(pitch) * sin(beta_pitch));
         double y_roll = roll > 0 ? -g_roll / cos(roll - beta_roll) : -g_roll / cos(roll + beta_roll);
@@ -121,14 +106,11 @@ public class MathUtils {
         return (y_center + y_pitch + y_roll);
     }
 
-
-
-
-    private double calc_y4(double y_center, double height, double pitch, double roll, double yaw) {
+    private double calcY4(double y_center, double height, double pitch, double roll, double yaw) {
         // local constants
-        double g_roll = get_g_roll(height);
-        double beta_pitch = get_beta_pitch();
-        double beta_roll = get_beta_roll();
+        double g_roll = getGRoll(height);
+        double beta_pitch = getBetaPitch();
+        double beta_roll = getBetaRoll();
 
         double y_pitch = pitch > 0 ? height * (sin(beta_pitch) / pow(cos(pitch), 2)) : height / (cos(pitch) * cos(beta_pitch) + sin(pitch) * sin(beta_pitch));
         double y_roll = roll > 0 ? g_roll / cos(roll - beta_roll) : g_roll / cos(roll + beta_roll);
@@ -151,15 +133,15 @@ public class MathUtils {
         double x_center = height * tan(roll);
         double y_center = height * tan(pitch);
 
-        double x_1 = calc_x1(x_center, height, pitch, roll, yaw);
-        double x_2 = calc_x2(x_center, height, pitch, roll, yaw);
-        double x_3 = calc_x3(x_center, height, pitch, roll, yaw);
-        double x_4 = calc_x4(x_center, height, pitch, roll, yaw);
+        double x_1 = calcX1(x_center, height, pitch, roll, yaw);
+        double x_2 = calcX2(x_center, height, pitch, roll, yaw);
+        double x_3 = calcX3(x_center, height, pitch, roll, yaw);
+        double x_4 = calcX4(x_center, height, pitch, roll, yaw);
 
-        double y_1 = calc_y1(y_center, height, pitch, roll, yaw);
-        double y_2 = calc_y2(y_center, height, pitch, roll, yaw);
-        double y_3 = calc_y3(y_center, height, pitch, roll, yaw);
-        double y_4 = calc_y4(y_center, height, pitch, roll, yaw);
+        double y_1 = calcY1(y_center, height, pitch, roll, yaw);
+        double y_2 = calcY2(y_center, height, pitch, roll, yaw);
+        double y_3 = calcY3(y_center, height, pitch, roll, yaw);
+        double y_4 = calcY4(y_center, height, pitch, roll, yaw);
 
         //// rotate
         double x_center_yaw = x_center * cos(yaw) + y_center * sin(yaw);

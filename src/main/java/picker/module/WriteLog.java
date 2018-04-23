@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class WriteLog {
-    public void WriteLogToFile(String log) throws IOException {
+    public void writeLogToFile(String log) throws IOException {
         FileWriter fileWriter = new FileWriter("output.txt", true);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         try (PrintWriter out = new PrintWriter(bufferedWriter)) {
