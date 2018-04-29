@@ -13,6 +13,7 @@ public class Controller {
     ParseFile parseFile = new ParseFile("input.csv");
     WriteLog writeLog = new WriteLog();
 
+    // refactor to the camelCase
     public void OnePhotoStart(int id) throws IOException {
         data = parseFile.getParsedData(id);
         new MathUtils().getResult(data);
